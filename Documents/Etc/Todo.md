@@ -10,8 +10,8 @@
 
 3. Find ways
 
-*Predict of Sales will be Regression
-*Clustering area by crisis rate, etc may be classification
+* Predict of Sales will be Regression
+* Clustering area by crisis rate, etc may be classification
 
 4. How to show corectness
 
