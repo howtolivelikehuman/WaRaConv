@@ -30,7 +30,7 @@ dataFrameLPCSV=pd.concat(dataFrameLP,axis=0,ignore_index=True)
 
 dFLPRP=pd.merge(ResidentP,dataFrameLPCSV,on='행정동코드',how='outer')
 
-output="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\서울시생활인구_주민등록인구.csv"
+output="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\서울시 생활인구-주민등록인구.csv"
 dFLPRP.to_csv(output,encoding='cp949',index=False)
 
 font_path="C:\\WINDOWS\\Fonts\\batang.ttc"
