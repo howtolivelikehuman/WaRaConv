@@ -6,6 +6,7 @@ import os
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import font_manager,rc
+from mpl_toolkits.mplot3d import Axes3D
 
 inputLivingP="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\서울시 생활인구8월.csv"
 inputResidentP="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\서울시 8월 구별 주민등록인구.csv"
@@ -33,33 +34,52 @@ dFLPRP=pd.merge(ResidentP,dataFrameLPCSV,on='행정동코드',how='outer')
 output="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\서울시 생활인구_주민등록인구.csv"
 #dFLPRP.to_csv(output,encoding='cp949',index=False)
 
+print(dFLPRP)
+
+
+input="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\서울시생활_주거인구VS임대시세.csv"
+
+df=pd.read_csv(input,encoding='cp949',engine='python')
+
+dfNew=pd.merge(dFLPRP,df,on="지역")
+
+print(dfNew)
+
 font_path="C:\\WINDOWS\\Fonts\\batang.ttc"
 font_name=font_manager.FontProperties(fname=font_path).get_name()
 matplotlib.rc('font',family=font_name)
 
-x=dFLPRP['2020년08월_총인구수']
-y=dFLPRP['8월평균총생활인구수']
-z=y/x
-tmp=[1 for i in range(len(z))]
-
+x=dfNew['2020년08월_총인구수']
+y=dfNew['8월평균총생활인구수']
+z=dfNew['20202분기임대시세']
 gu=dFLPRP['지역']
 
+'''
 #거주인구와 생활인구
 fig, ax=plt.subplots()
-ax.scatter(x,y)
+ax.scatter(x,y,z)
 
 for i, txt in enumerate(gu):
-    ax.annotate(txt,(x[i],y[i]))
+    ax.annotate(txt,(x[i],y[i],z[i]))
 
-plt.xlabel('2020년08월_총인구수')
+plt.xlabel('8월 주민등록인구')
 plt.ylabel('8월평균총생활인구수')
+plt.zlabel('20202분기임대시세')
+
 plt.show()
+'''
 
-#생활인구/주민등록인구 그래프
-fig, ax=plt.subplots()
-ax.scatter(z,tmp)
+#3차원
 
-for i, txt in enumerate(gu):
-    ax.annotate(txt,(z[i],tmp[i]))
+fig=plt.figure()
+ax=fig.gca(projection='3d')
+
+for i in x.index:
+    xp=x
+
+
+ax.set_xlabel('8월 주민등록인구')
+ax.set_ylabel('8월평균총생활인구수')
+ax.set_zlabel('20202분기임대시세')
 
 plt.show()
