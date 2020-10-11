@@ -16,7 +16,7 @@ input="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\서울시생활_�
 df=pd.read_csv(input,encoding='cp949',engine='python')
 
 x=df['2020년 2분기 생활_주거']
-y=df['20202분기임대시세']
+y=df['20202분기임대시세 1층']
 gu=df['지역']
 
 #거주인구와 생활인구
@@ -27,5 +27,5 @@ for i, txt in enumerate(gu):
     ax.annotate(txt,(x[i],y[i]))
 
 plt.xlabel('2020년 2분기 생활_주거')
-plt.ylabel('20202분기임대시세')
+#plt.ylabel('20202분기임대시세 1층')
 plt.show()
