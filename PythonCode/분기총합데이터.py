@@ -15,6 +15,7 @@ for i in range(2018,2021):
     df5=pd.read_csv(input5, encoding="cp949",engine='python')
     df6=pd.read_csv(input6, encoding="cp949",engine='python')
 
+    df3=df3.iloc[:,[0,1,5,6]]
 
     df5=df5.iloc[:,[0,(i-2017)]]
     df5.rename(columns={'지역구':'지역'}, inplace=True)
