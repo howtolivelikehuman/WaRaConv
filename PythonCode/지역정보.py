@@ -19,7 +19,6 @@ df=df.iloc[1:,0:3]
 df=df.assign(자치구="",행정동="")
 
 df=df.copy()
-
 Gu=''
 
 for i in range(len(df)):
