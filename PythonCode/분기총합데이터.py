@@ -7,6 +7,7 @@ for i in range(2018,2021):
     input4="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\주민등록인구 성별 통계\\"+str(i)+" 2분기 주민등록인구 성별 통계.csv"
     input5="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\서울특별시 대규모점포 인허가 수.csv"
     input6="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\서울시 편의점수\\"+str(i)+" 서울시 편의점수.csv"
+    input7="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\편의점 매출\\"+str(i)+"년 2분기 편의점 매출 통계.csv"
 
     df1=pd.read_csv(input1, encoding="cp949",engine='python')
     df2=pd.read_csv(input2, encoding="cp949",engine='python')
@@ -14,6 +15,7 @@ for i in range(2018,2021):
     df4=pd.read_csv(input4, encoding="cp949",engine='python')
     df5=pd.read_csv(input5, encoding="cp949",engine='python')
     df6=pd.read_csv(input6, encoding="cp949",engine='python')
+    df7=pd.read_csv(input7, encoding="cp949",engine='python')
 
     df3=df3.iloc[:,[0,1,5,6]]
 
@@ -26,6 +28,7 @@ for i in range(2018,2021):
     dftotal=pd.merge(dftotal,df3,on=['지역','행정동코드'], how='outer')
     dftotal=pd.merge(dftotal,df5,on='지역', how='outer')
     dftotal=pd.merge(dftotal,df6,on=['지역','행정동코드'], how='outer')
+    dftotal=pd.merge(dftotal,df7,on='지역', how='outer')
 
     output="C:\\Users\\admin\\Desktop\\WaRaConv\\ProcessedDataSet\\분기총합데이터\\"+str(i)+" 2분기 총합.csv"
 
