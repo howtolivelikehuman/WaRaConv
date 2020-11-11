@@ -1,6 +1,5 @@
-package com.swapp.waraconvapp;
+package com.swapp.waraconvapp.Input;
 
-import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 

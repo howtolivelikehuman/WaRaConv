@@ -1,28 +1,31 @@
-package com.swapp.waraconvapp;
+package com.swapp.waraconvapp.Input;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.tabs.TabLayout;
+import com.swapp.waraconvapp.Input.Input;
+import com.swapp.waraconvapp.Input.InputFragment1;
+import com.swapp.waraconvapp.Input.InputFragment2;
+import com.swapp.waraconvapp.Input.InputFragment3;
+import com.swapp.waraconvapp.Input.InputListener;
+import com.swapp.waraconvapp.R;
 
 public class SearchActivity extends AppCompatActivity implements InputListener {
 
     Toolbar toolbar;
-    InputFragment1  inputfragment1;
-    InputFragment2  inputfragment2;
-    InputFragment3  inputfragment3;
+    InputFragment1 inputfragment1;
+    InputFragment2 inputfragment2;
+    InputFragment3 inputfragment3;
     Input input;
     TabLayout tabs;
+    TextView titleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,10 @@ public class SearchActivity extends AppCompatActivity implements InputListener {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        titleText = findViewById(R.id.titleText);
+        titleText.setText("검색");
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
@@ -59,6 +66,11 @@ public class SearchActivity extends AppCompatActivity implements InputListener {
         Bundle bundle = new Bundle();
 
         switch (index){
+            case 0:
+            {
+                finish();
+                break;
+            }
             case 1:
             {
                 bundle.putParcelable("input",input);
@@ -81,6 +93,14 @@ public class SearchActivity extends AppCompatActivity implements InputListener {
                 inputfragment3.setArguments(bundle);
                 tabs.getTabAt(2).select();
                 getSupportFragmentManager().beginTransaction().replace(R.id.container,inputfragment3).commit();
+                break;
+            }
+            case 4:
+            {
+                Log.d("결과", input.getArea().get(0));
+                Log.d("결과", Integer.toString(input.getRatio()));
+                Log.d("결과", Integer.toString(input.getRentalmax()));
+                Log.d("결과", Integer.toString(input.getRentalmin()));
                 break;
             }
         }
