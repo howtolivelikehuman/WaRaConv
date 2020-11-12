@@ -1,6 +1,6 @@
 import pandas as pd
 
-input="..\\DataSet\\서울시 개폐업률(편의점).csv"
+input="../DataSet/서울시 개폐업률(편의점).csv"
 
 df=pd.read_csv(input, encoding='utf-8',engine='python',\
     names=['NM','CD','GUBUN',
@@ -9,17 +9,14 @@ df=pd.read_csv(input, encoding='utf-8',engine='python',\
     '2020년2분기개업수','2020년2분기폐업수','2020년2분기개업률','2020년2분기폐업률'],
     header=None)
 
-df=df.iloc[1:]
+df=df.iloc[2:]
 
-df.rename(columns={'CD':'행정동코드'}, inplace=True)
+#df.rename(columns={'CD':'행정동코드'}, inplace=True)
 df.rename(columns={'2018년2분기폐업률':'폐업률'}, inplace=True)
 df.rename(columns={'2019년2분기폐업률':'폐업률'}, inplace=True)
 df.rename(columns={'2020년2분기폐업률':'폐업률'}, inplace=True)
 
-#구단위
-df=df[(df['GUBUN'].str.contains('gu'))]
-
-outdir="..\\ProcessedDataSet\\폐업률 통계\\"
+outdir="../ProcessedDataSet/동단위 세부 데이터/편의점 폐업률 통계/"
 
 df2018=df.iloc[:,[1,6]]
 df2018.to_csv(outdir+"2018년 2분기 폐업률 통계.csv",encoding='cp949',index=False)
