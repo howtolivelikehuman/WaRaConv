@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -73,6 +73,7 @@
             android:paddingRight="20dp"
             android:text="수익성은 매출을 기반으로 도출한 결과입니다.\n예상 매출이 높을수록 높은 점수를 부여합니다.\n\n안전성은 폐업률을 기반으로 도출한 결과입니다.\n예상 폐업률이 낮을수록 높은 점수를 부여합니다.\n\n입력하신 비율에 따라 수익성과 안전성의 가중치를 주어 점수화를 통해 순위을 부여합니다."
             android:textSize="16sp" />
+
 
         <LinearLayout
             android:id="@+id/linearLayout"
