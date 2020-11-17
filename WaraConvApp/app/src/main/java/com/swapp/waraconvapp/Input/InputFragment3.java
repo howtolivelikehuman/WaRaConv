@@ -2,6 +2,7 @@ package com.swapp.waraconvapp.Input;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -27,7 +27,6 @@ import com.swapp.waraconvapp.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class InputFragment3 extends Fragment {
@@ -119,7 +118,10 @@ public class InputFragment3 extends Fragment {
             public void onClick(View view) {
                 input.setRentalmin(rentalmin);
                 input.setRentalmax(rentalmax);
-                ((InputListener)activity).inputSet(input,4);
+                //((InputListener)activity).inputSet(input,4);
+
+                Intent intent = new Intent(getContext(), RankActivity.class);
+                startActivity(intent);
             }
         });
 

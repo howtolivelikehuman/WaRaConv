@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:ems="6"
                 android:gravity="right"
-                android:hint="999999"
+                android:hint="252706"
                 android:inputType="number" />
 
         </LinearLayout>
@@ -120,6 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="최소 :"
+                android:hint="95238"
                 android:textSize="18sp" />
 
             <EditText
