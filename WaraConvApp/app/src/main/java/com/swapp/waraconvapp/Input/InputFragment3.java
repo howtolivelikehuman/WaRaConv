@@ -24,6 +24,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.swapp.waraconvapp.R;
+import com.swapp.waraconvapp.Rank.RankActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;

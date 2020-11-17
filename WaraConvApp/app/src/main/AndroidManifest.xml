@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Input.InforDetailActivity"></activity>
-        <activity android:name=".Input.RankActivity" />
+        <activity android:name=".Rank.InforDetailActivity"></activity>
+        <activity android:name=".Rank.RankActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

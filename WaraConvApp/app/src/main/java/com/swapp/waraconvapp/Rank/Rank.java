@@ -1,4 +1,4 @@
-package com.swapp.waraconvapp.Input;
+package com.swapp.waraconvapp.Rank;
 
 import android.os.Parcel;
 import android.os.Parcelable;

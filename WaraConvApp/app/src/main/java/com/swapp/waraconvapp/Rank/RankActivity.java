@@ -1,4 +1,4 @@
-package com.swapp.waraconvapp.Input;
+package com.swapp.waraconvapp.Rank;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
