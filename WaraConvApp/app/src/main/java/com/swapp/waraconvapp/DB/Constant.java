@@ -11,32 +11,60 @@ public class Constant {
     //for classify
     public static final String DATA_CODE = "code";
     public static final String DATA_NAME = "name";
-    public static final String DATA_TYPE = "type";
     public static final String DATA_PARENT = "parent";
-    public static final String DATA_YEAR = "year";
+    public static final String DATA_PARENTNAME = "parentName";
 
     //dataset
-    public static final String DATA_MALE = "male";
-    public static final String DATA_FEMALE = "female";
-    public static final String DATA_ONE_HOUSEHOLD = "onehouse";
-    public static final String DATA_CONV_NUM = "convnum";
-    public static final String DATA_RENT = "rent";
+    public static final String[] DATA_MALE = {"male2018", "male2019", "male2020"};
+    public static final String[] DATA_FEMALE = {"female2018", "female2019", "female2020"};
+    public static final String[] DATA_ONE_HOUSEHOLD = {"onehouse2018", "onehouse2019", "onehouse2020"};
+    public static final String[] DATA_CONV_NUM = {"convnum2018", "convnum2019", "convnum2020"};
+    public static final String[] DATA_RENT = {"rent2018", "rent2019", "rent2020"};
+
+    //map
+    public static final String MAP_CHILD = "childcode";
+    public static final String MAP_PARENT = "parentcode";
+
+    //RANK
+    public static final String RANK_CODE = "code";
+    public static final String RANK_PROFITSCORE = "profitscore";
+    public static final String RANK_STABLESCORE = "stablescore";
+    public static final String RANK_TOTALSCORE = "totalscore";
+    public static final String[] TABLE_NAME = {"DATA", "MAP", "RANK"};
 
 
-    public static final String TABLE_DATA_ = "Data";
-    public static final String[] TABLE_NAME = {"data2018", "data2019", "data2020", "Rank"};
+    /*SELECT rank.code, data2020.name, rank.profitscore, rank.stablescore, rank.profitscore*0.7+rank.stablescore*0.1 as totalscore
+    FROM data2020, rank
+    WHERE rank.code IN (
+        SELECT map.childcode From map
+        where map.parentcode = 11110 OR map.parentcode = 11200
+        INTERSECT
 
-    public static final String CREATE_TABLE_DATA = "create table if not exists "
-            + TABLE_DATA_ + "("
-            + DATA_NAME +" text, "
-            + DATA_CODE +" integer, "
-            + DATA_TYPE +" text, "
-            + DATA_PARENT + " text, "
-            + DATA_YEAR + " integer, "
-            + DATA_MALE + " integer, "
-            + DATA_FEMALE + " integer, "
-            + DATA_ONE_HOUSEHOLD + " integer, "
-            + DATA_CONV_NUM + " integer, "
-            + DATA_RENT + " integer)" ;
+        SELECT data2020.code From data2020
+        WHERE data2020.rent BETWEEN 111111 AND 222222
+    )AND rank.code = data2020.code
+    ORDER BY totalscore desc */
 
+    public static final String FIND_RANK1 = "SELECT " + TABLE_NAME[2]+"."+RANK_CODE+ ", "
+            + TABLE_NAME[0]+"."+DATA_NAME+ ", "
+            + TABLE_NAME[0]+"."+DATA_PARENTNAME+", "
+            + TABLE_NAME[0]+"."+DATA_PARENT+", "
+            + TABLE_NAME[2]+"."+RANK_PROFITSCORE+ ", "
+            + TABLE_NAME[2]+"."+RANK_STABLESCORE + ", ";
+
+    public static final String FIND_RANK2 = " AS " + RANK_TOTALSCORE
+            + " FROM " + TABLE_NAME[0] +", " + TABLE_NAME[2]
+            + " WHERE " + TABLE_NAME[2]+"."+RANK_CODE + " IN (";
+
+    public static final String FIND_RANGE_AREA = "SELECT " + TABLE_NAME[1]+"."+MAP_CHILD
+            + " FROM " + TABLE_NAME[1]
+            + " WHERE " + TABLE_NAME[1]+"."+MAP_PARENT+ " = ";
+
+    public static final String FIND_RANGE_RENT = "SELECT " + TABLE_NAME[0]+"."+DATA_CODE
+            + " FROM " + TABLE_NAME[0]
+            + " WHERE " + TABLE_NAME[0]+"."+DATA_RENT[2]+ " BETWEEN ";
+
+    public static final String FIND_RANK3 = " ) AND " + TABLE_NAME[2]+"."+RANK_CODE
+            + " = " + TABLE_NAME[0]+"."+DATA_CODE
+            + " ORDER BY " + RANK_TOTALSCORE + " DESC";
 }

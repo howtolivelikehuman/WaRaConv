@@ -28,7 +28,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="결과 순위"
+                    android:text="결과"
                     android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
@@ -43,12 +43,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TEXT VIEW"
-                    android:textSize="30sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewRank"

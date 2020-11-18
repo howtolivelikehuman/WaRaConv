@@ -1,5 +1,6 @@
 package com.swapp.waraconvapp.Input;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
@@ -16,6 +17,7 @@ import com.swapp.waraconvapp.Input.InputFragment2;
 import com.swapp.waraconvapp.Input.InputFragment3;
 import com.swapp.waraconvapp.Input.InputListener;
 import com.swapp.waraconvapp.R;
+import com.swapp.waraconvapp.Rank.RankActivity;
 
 public class SearchActivity extends AppCompatActivity implements InputListener {
 
@@ -97,10 +99,10 @@ public class SearchActivity extends AppCompatActivity implements InputListener {
             }
             case 4:
             {
-                Log.d("결과", input.getArea().get(0));
-                Log.d("결과", Integer.toString(input.getRatio()));
-                Log.d("결과", Integer.toString(input.getRentalmax()));
-                Log.d("결과", Integer.toString(input.getRentalmin()));
+                Intent intent = new Intent(getApplicationContext(), RankActivity.class);
+                intent.putExtra("input", input);
+                startActivity(intent);
+                finish();
                 break;
             }
         }

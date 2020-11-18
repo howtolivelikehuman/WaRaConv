@@ -2,7 +2,6 @@ package com.swapp.waraconvapp.Input;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,8 +22,9 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.swapp.waraconvapp.DB.DataBase;
+import com.swapp.waraconvapp.DB.DatabaseHelper;
 import com.swapp.waraconvapp.R;
-import com.swapp.waraconvapp.Rank.RankActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,14 +55,12 @@ public class InputFragment3 extends Fragment {
         lineChart = (LineChart) view.findViewById(R.id.rentalChart);
         List<Entry> entries =new ArrayList<>();
 
-        ArrayList<Integer> rental = new ArrayList<>(Arrays.asList(Area.rental));
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            rental.sort(null);
-        }
+        DataBase db = new DataBase(new DatabaseHelper(activity.getApplicationContext()));
+        ArrayList<String[]> rental = db.findRent();
+       // ArrayList<Integer> rental = new ArrayList<>(Arrays.asList(Area.rental));
 
         for(int i=0; i<rental.size(); i++){
-            entries.add(new Entry(i,rental.get(i)));
+            entries.add(new Entry(i,Integer.parseInt(rental.get(i)[1])));
         }
 
         LineDataSet lineDataSet = new LineDataSet(entries, "지역구");
@@ -103,6 +101,7 @@ public class InputFragment3 extends Fragment {
         lineChart.invalidate();
 
         RentalMarkerView markerView = new RentalMarkerView(activity.getApplicationContext(), R.layout.markerview);
+        markerView.setRental(rental);
         markerView.setChartView(lineChart);
         lineChart.setMarker(markerView);
 
@@ -117,12 +116,17 @@ public class InputFragment3 extends Fragment {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(editTextmax.getText().toString().length() > 1){
+                    rentalmax = Integer.parseInt(editTextmax.getText().toString());
+                }
+                if(editTextmin.getText().toString().length() > 1){
+                    rentalmin = Integer.parseInt(editTextmin.getText().toString());
+                }
+
                 input.setRentalmin(rentalmin);
                 input.setRentalmax(rentalmax);
-                //((InputListener)activity).inputSet(input,4);
-
-                Intent intent = new Intent(getContext(), RankActivity.class);
-                startActivity(intent);
+                ((InputListener)activity).inputSet(input,4);
             }
         });
 
@@ -130,8 +134,6 @@ public class InputFragment3 extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                input.setRentalmin(rentalmin);
-                input.setRentalmax(rentalmax);
                 ((InputListener)activity).inputSet(input,2);
             }
         });

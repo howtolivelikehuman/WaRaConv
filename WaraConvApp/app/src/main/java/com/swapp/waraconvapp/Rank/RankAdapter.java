@@ -9,23 +9,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.swapp.waraconvapp.DB.DetailInfo;
 import com.swapp.waraconvapp.R;
 
 import java.util.ArrayList;
 
 public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
-    ArrayList<Rank> rankItems=new ArrayList<Rank>();
+    ArrayList<DetailInfo> rankItems=new ArrayList<DetailInfo>();
     //private OnItemClickListener mListerner=null;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView textViewRank, textViewDongName, textViewScore;
+        TextView tvRank, tvName, tvParent, tvTotalScore, tvProfitScore, tvStableScore;
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
-            textViewRank=itemView.findViewById(R.id.textViewRank);
-            textViewDongName=itemView.findViewById(R.id.textViewDongName);
-            textViewScore=itemView.findViewById(R.id.textViewScore);
+            tvRank=itemView.findViewById(R.id.textViewRank);
+            tvName=itemView.findViewById(R.id.textViewName);
+            tvParent=itemView.findViewById(R.id.textViewParent);
+            tvTotalScore=itemView.findViewById(R.id.textView_totalscore);
+            tvProfitScore=itemView.findViewById(R.id.textView_profitscore);
+            tvStableScore=itemView.findViewById(R.id.textView_stablescore);
 
             //아이템 클릭 리스너
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -33,19 +37,22 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
                 public void onClick(View view) {
                     int pos=getAdapterPosition();
                     if(pos!=RecyclerView.NO_POSITION){
-                        Rank item = rankItems.get(pos);
-                        Intent intent = new Intent(itemView.getContext(), InforDetailActivity.class);
-
+                        DetailInfo item = rankItems.get(pos);
+                        Intent intent = new Intent(itemView.getContext(), InfoDetailActivity.class);
+                        intent.putExtra("detailinfo", item);
                         view.getContext().startActivity(intent);
                     }
                 }
             });
         }
 
-        public void setItem(Rank item){
-            textViewRank.setText(item.getRank()+"위");
-            textViewDongName.setText(item.getDongName());
-            textViewScore.setText(item.getScore()+"점");
+        public void setItem(DetailInfo item){
+            tvRank.setText(Integer.toString(item.getRanknum()));
+            tvName.setText(item.getName());
+            tvParent.setText(item.getParentName());
+            tvTotalScore.setText("총 : "+Float.toString(item.getTotalscore())+"점");
+            tvProfitScore.setText("수익성 : "+Float.toString(item.getProfitscore())+"점");
+            tvStableScore.setText("안정성 : "+Float.toString(item.getStablescore())+"점");
         }
     }
 
@@ -60,7 +67,7 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Rank item=rankItems.get(position);
+        DetailInfo item=rankItems.get(position);
         holder.setItem(item);
     }
 
@@ -69,19 +76,19 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
         return rankItems.size();
     }
 
-    public void addItem(Rank item){
+    public void addItem(DetailInfo item){
         rankItems.add(item);
     }
 
-    public void setItems(ArrayList<Rank> rankItems){
+    public void setItems(ArrayList<DetailInfo> rankItems){
         this.rankItems=rankItems;
     }
 
-    public Rank getItem(int position){
+    public DetailInfo getItem(int position){
         return rankItems.get(position);
     }
 
-    public void setItem(int position, Rank item){
+    public void setItem(int position, DetailInfo item){
         this.rankItems.set(position,item);
     }
 }

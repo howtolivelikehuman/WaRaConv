@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isCheckDB(Context context){
-        String filepath = "/data/data/" + Constant.PACKAGE_NAME + "/databases/" + Constant.DATABASE_NAME;
+        String filepath = "/data/data/" + context.getPackageName() + "/databases/" + Constant.DATABASE_NAME;
         File file = new File(filepath);
 
         if(file.exists()){
@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
     public void copyDB(Context context){
-        Log.d("WaraConv", "copyDB");
         AssetManager manager = context.getAssets();
         String folderpath = "/data/data/" + context.getPackageName() + "/databases";
         String filepath = "/data/data/" + context.getPackageName() + "/databases/" + Constant.DATABASE_NAME;

@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.swapp.waraconvapp.DB.DataBase;
+import com.swapp.waraconvapp.DB.DatabaseHelper;
 import com.swapp.waraconvapp.R;
 
 import java.util.ArrayList;
@@ -23,8 +25,6 @@ public class InputFragment1 extends Fragment {
     Input input;
     Bundle bundle;
     ArrayList<String> area;
-    String[] areaList = {"종로구" , "청운효장동", "사직동", "삼청동", "부암동", "평창동", "중구", "소공동", "회현동", "명동", "필동", "용산구","후암동","용산2가동","남영동", "동대문구","휘경1동","휘경2동", "제기동", "신설동"};
-
     private RecyclerView recyclerView;
     AreaAdapter areaAdapter;
 
@@ -59,9 +59,35 @@ public class InputFragment1 extends Fragment {
         }
         recyclerView.setAdapter(new AreaAdapter(data));*/
 
+        DataBase db = new DataBase(new DatabaseHelper(activity.getApplicationContext()));
+        area = db.findArea();
 
-        int i=0;
-        while(i < areaList.length){
+        //맨 윗줄 서울 제외
+        int i=1;
+        while(i < area.size()) {
+            String s = area.get(i);
+            AreaAdapter.Gu gu;
+
+            if (s.lastIndexOf("구") == s.length() - 1) {
+
+                gu = new AreaAdapter.Gu(AreaAdapter.HEADER, s);
+                gu.invisibleChildren = new ArrayList<>();
+                //Log.d("구", s + " " + Integer.toString(i));
+                s = area.get(++i);
+
+                while (s.lastIndexOf("동") == s.length() - 1) {
+                    //Log.d("동", s + " " + Integer.toString(i));
+                    gu.invisibleChildren.add(new AreaAdapter.Gu(AreaAdapter.CHILD, s));
+
+                    if (i == area.size() - 1) {
+                        i++;
+                        break;
+                    } else s = area.get(++i);
+                }
+                data.add(gu);
+            }
+        }
+        /*while(i < areaList.length){
             String s = areaList[i];
             AreaAdapter.Gu gu;
 
@@ -83,20 +109,20 @@ public class InputFragment1 extends Fragment {
                 }
                 data.add(gu);
             }
-        }
+        }*/
 
         areaAdapter = new AreaAdapter(data);
         recyclerView.setAdapter(areaAdapter);
         area = areaAdapter.area;
 
         bundle = getArguments();
+
         //처음 실행됨
         if(bundle == null){
             input = new Input();
         }
         else{
             input = bundle.getParcelable("input");
-            Log.d("도시들", Integer.toString(area.size()));
         }
 
         ImageButton backBtn = view.findViewById(R.id.backButton);

@@ -46,8 +46,6 @@ public class InputFragment2 extends Fragment {
         seekBar = view.findViewById(R.id.seekBar);
         seekBar.setProgress(ratio);
 
-        Log.d("도시들", Integer.toString(input.getArea().size()));
-        Log.d("비율", Integer.toString(seekBar.getProgress()));
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

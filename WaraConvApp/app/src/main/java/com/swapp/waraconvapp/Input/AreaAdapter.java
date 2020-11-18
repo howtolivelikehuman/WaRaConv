@@ -41,7 +41,6 @@ public class AreaAdapter extends RecyclerView.Adapter {
         int subItemPaddingTopAndBottom = (int)(5*dp);
 
         switch (viewType){
-
             case HEADER:
                 LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater.inflate(R.layout.area_header, parent, false);
@@ -54,7 +53,7 @@ public class AreaAdapter extends RecyclerView.Adapter {
                 itemTextView.setTextColor(0x88000000);
                 itemTextView.setLayoutParams(
                         new ViewGroup.LayoutParams(
-                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT));
                 return new RecyclerView.ViewHolder(itemTextView) {
                 };
@@ -68,10 +67,13 @@ public class AreaAdapter extends RecyclerView.Adapter {
         final Gu item = data.get(position);
         switch (item.type) {
             case HEADER:
-
                 final ListHeaderViewHolder itemController = (ListHeaderViewHolder) holder;
                 itemController.refferalItem = item;
                 itemController.header_title.setText(item.text);
+
+                //FOR CHECK
+                itemController.checkBox.setOnCheckedChangeListener(null);
+                itemController.checkBox.setChecked(item.checked);
                 itemController.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Rank.InforDetailActivity"></activity>
+
+        <activity android:name=".Rank.InfoDetailActivity"/>
         <activity android:name=".Rank.RankActivity" />
+        <activity android:name=".Input.SearchActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Input.SearchActivity" />
+
     </application>
 
 </manifest>
