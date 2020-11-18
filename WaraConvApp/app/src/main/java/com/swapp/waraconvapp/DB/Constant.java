@@ -6,8 +6,8 @@ public class Constant {
     public static final String PACKAGE_NAME = "com.swapp.waraconv.app";
 
     public static final String DATABASE_NAME = "WaraDB";
-    public static final String TABLE_RANK = "Rank";
-
+    public static final String[] TABLE_NAME = {"DATA", "MAP", "RANK"};
+    
     //for classify
     public static final String DATA_CODE = "code";
     public static final String DATA_NAME = "name";
@@ -30,7 +30,7 @@ public class Constant {
     public static final String RANK_PROFITSCORE = "profitscore";
     public static final String RANK_STABLESCORE = "stablescore";
     public static final String RANK_TOTALSCORE = "totalscore";
-    public static final String[] TABLE_NAME = {"DATA", "MAP", "RANK"};
+
 
 
     /*SELECT rank.code, data2020.name, rank.profitscore, rank.stablescore, rank.profitscore*0.7+rank.stablescore*0.1 as totalscore
