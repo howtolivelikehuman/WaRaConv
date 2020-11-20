@@ -47,7 +47,7 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
         }
 
         public void setItem(DetailInfo item){
-            tvRank.setText(Integer.toString(item.getRanknum()));
+            tvRank.setText(Integer.toString(item.getRanknum())+"위");
             tvName.setText(item.getName());
             tvParent.setText(item.getParentName());
             tvTotalScore.setText("총 : "+Float.toString(item.getTotalscore())+"점");

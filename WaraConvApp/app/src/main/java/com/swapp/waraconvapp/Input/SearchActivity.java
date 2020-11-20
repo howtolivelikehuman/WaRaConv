@@ -37,7 +37,6 @@ public class SearchActivity extends AppCompatActivity implements InputListener {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         titleText = findViewById(R.id.titleText);
         titleText.setText("검색");
 

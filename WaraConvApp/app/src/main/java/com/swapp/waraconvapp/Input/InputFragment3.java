@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -122,11 +123,17 @@ public class InputFragment3 extends Fragment {
                 }
                 if(editTextmin.getText().toString().length() > 1){
                     rentalmin = Integer.parseInt(editTextmin.getText().toString());
-                }
+                    if(rentalmax>rentalmin){
+                        input.setRentalmin(rentalmin);
+                        input.setRentalmax(rentalmax);
+                        ((InputListener)activity).inputSet(input,4);
+                    }else{
+                        Toast.makeText(getContext(), "올바른 금액을 입력하세요", Toast.LENGTH_SHORT).show();
+                    }
 
-                input.setRentalmin(rentalmin);
-                input.setRentalmax(rentalmax);
-                ((InputListener)activity).inputSet(input,4);
+                }else{
+                    Toast.makeText(getContext(), "최소 금액을 입력하세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
