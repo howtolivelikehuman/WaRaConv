@@ -3,7 +3,6 @@ package com.swapp.waraconvapp.Input;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,7 +27,6 @@ import com.swapp.waraconvapp.DB.DatabaseHelper;
 import com.swapp.waraconvapp.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class InputFragment3 extends Fragment {

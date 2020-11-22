@@ -20,11 +20,15 @@ import org.eazegraph.lib.models.PieModel;
 
 public class InforDetailFragment3 extends Fragment {
 
-    DetailInfo detailInfo;
-    PieChart pieChartWorkLive;
-    BarChart barChartHouseHold;
+    //data
+    int code;
+    int[] gender;
+    int[] generation;
 
-    TextView textViewWorkLiveDetail;
+    PieChart pieChartSex;
+    BarChart barChartAge;
+
+    TextView textViewSexDetail;
 
     public InforDetailFragment3() {
         // Required empty public constructor
@@ -39,29 +43,28 @@ public class InforDetailFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         Bundle bundle = getArguments();
-        detailInfo = bundle.getParcelable("detailInfo");
+        code = bundle.getInt("code");
+        gender = bundle.getIntArray("gender");
+        generation = bundle.getIntArray("generation");
 
         View view = inflater.inflate(R.layout.fragment_infor_detail3, container, false);
 
-        textViewWorkLiveDetail=view.findViewById(R.id.textViewWorkLiveDetail);
-        textViewWorkLiveDetail.setText("주거인구: 13459명\n직장인구: 11210명");
+        textViewSexDetail=view.findViewById(R.id.textViewSexDetail);
+        textViewSexDetail.setText("남성:" + gender[0]+ "명  여성:" + gender[1]+"명");
 
-        pieChartWorkLive=view.findViewById(R.id.pieChartWorkLive);
-        barChartHouseHold=view.findViewById(R.id.barChartHouseHold);
+        pieChartSex=view.findViewById(R.id.pieChartSex);
+        barChartAge=view.findViewById(R.id.barChartAge);
 
-        pieChartWorkLive.clearChart();
-        pieChartWorkLive.addPieSlice(new PieModel("주거인구",13459, Color.parseColor("#CDA67F")));
-        pieChartWorkLive.addPieSlice(new PieModel("직장인구",11210,Color.parseColor("#00BFFF")));
-        pieChartWorkLive.startAnimation();
+        pieChartSex.clearChart();
+        pieChartSex.addPieSlice(new PieModel("남성",gender[0], Color.parseColor("#CDA67F")));
+        pieChartSex.addPieSlice(new PieModel("여성",gender[1],Color.parseColor("#00BFFF")));
+        pieChartSex.startAnimation();
 
-        barChartHouseHold.clearChart();
-        barChartHouseHold.addBar(new BarModel("1인세대",2043,Color.parseColor("#00BFFF")));
-        barChartHouseHold.addBar(new BarModel("2인세대",1135,Color.parseColor("#00BFFF")));
-        barChartHouseHold.addBar(new BarModel("3인세대",991,Color.parseColor("#00BFFF")));
-        barChartHouseHold.addBar(new BarModel("4인세대",915,Color.parseColor("#00BFFF")));
-        barChartHouseHold.addBar(new BarModel("5인세대",234,Color.parseColor("#00BFFF")));
-
-        barChartHouseHold.startAnimation();
+        barChartAge.clearChart();
+        for(int i=0; i<generation.length;i++){
+            barChartAge.addBar(new BarModel((i+1)+"0대",generation[i],Color.parseColor("#00BFFF")));
+        }
+        barChartAge.startAnimation();
 
         return view;
     }

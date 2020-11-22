@@ -2,69 +2,28 @@ package com.swapp.waraconvapp.Rank;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.swapp.waraconvapp.DB.DetailInfo;
+import androidx.fragment.app.Fragment;
+
 import com.swapp.waraconvapp.R;
 
-import org.eazegraph.lib.charts.BarChart;
-import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.PieModel;
 
 public class InforDetailFragment2 extends Fragment {
 
-    DetailInfo detailInfo;
-    PieChart pieChartSex;
-    BarChart barChartAge;
-
-    TextView textViewSexDetail;
-
-    public InforDetailFragment2() {
-        // Required empty public constructor
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         Bundle bundle = getArguments();
-        detailInfo = bundle.getParcelable("detailInfo");
 
         View view = inflater.inflate(R.layout.fragment_infor_detail2, container, false);
-
-        textViewSexDetail=view.findViewById(R.id.textViewSexDetail);
-        textViewSexDetail.setText("남성: 5851명\n여성: 6699명");
-
-        pieChartSex=view.findViewById(R.id.pieChartSex);
-        barChartAge=view.findViewById(R.id.barChartAge);
-
-        pieChartSex.clearChart();
-        pieChartSex.addPieSlice(new PieModel("남성",5851, Color.parseColor("#CDA67F")));
-        pieChartSex.addPieSlice(new PieModel("여성",6699,Color.parseColor("#00BFFF")));
-        pieChartSex.startAnimation();
-
-        barChartAge.clearChart();
-        barChartAge.addBar(new BarModel("0대",882,Color.parseColor("#00BFFF")));
-        barChartAge.addBar(new BarModel("10대",1227,Color.parseColor("#00BFFF")));
-        barChartAge.addBar(new BarModel("20대",1675,Color.parseColor("#00BFFF")));
-        barChartAge.addBar(new BarModel("30대",1776,Color.parseColor("#00BFFF")));
-        barChartAge.addBar(new BarModel("40대",2238,Color.parseColor("#00BFFF")));
-        barChartAge.addBar(new BarModel("50대",2036,Color.parseColor("#00BFFF")));
-        barChartAge.addBar(new BarModel("60대",1390,Color.parseColor("#00BFFF")));
-
-        barChartAge.startAnimation();
-
         return view;
     }
 }

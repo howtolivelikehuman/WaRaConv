@@ -151,4 +151,74 @@ public class DataBase {
         cursor.close();
         return list;
     }
+
+
+    //성별 배열 받아오기
+    public int[] findGender(int code){
+        int[] list = new int[2];
+        String selection = Constant.DATA_CODE + " LIKE ?";
+        String[] selectionArgs = {Integer.toString(code)};
+        String[] columns = {"male", Constant.DATA_GENDER[1]};
+
+        Cursor cursor  = database.query(Constant.TABLE_NAME[3], columns, selection, selectionArgs, null,null, null);
+        Log.d("검색결과", "코드" + code + " "+cursor.getCount());
+        if(cursor.getCount() > 0) {
+            cursor.moveToNext();
+            list[0] = cursor.getInt(0);
+            list[1] = cursor.getInt(1);
+        }
+        cursor.close();
+        return list;
+    }
+    //세대 인구(10대~60대)
+    public int[] findGeneration(int code){
+        int[] list = new int[Constant.DATA_GENERATGION.length];
+        String selection = Constant.DATA_CODE + " LIKE ?";
+        String[] selectionArgs = {Integer.toString(code)};
+        String[] columns = Constant.DATA_GENERATGION;
+
+        Cursor cursor  = database.query(Constant.TABLE_NAME[3], columns, selection, selectionArgs, null,null, null);
+        if(cursor.getCount() > 0) {
+            cursor.moveToNext();
+            for(int i=0; i<list.length; i++){
+                list[i] = cursor.getInt(i);
+            }
+        }
+        cursor.close();
+        return list;
+    }
+    //가족수 당 세대수(1~5)
+    public int[] findHouse(int code){
+        int[] list = new int[Constant.DATA_HOUSE.length];
+        String selection = Constant.DATA_CODE + " LIKE ?";
+        String[] selectionArgs = {Integer.toString(code)};
+        String[] columns = Constant.DATA_HOUSE;
+
+        Cursor cursor  = database.query(Constant.TABLE_NAME[3], columns, selection, selectionArgs, null,null, null);
+        if(cursor.getCount() > 0) {
+            cursor.moveToNext();
+            for(int i=0; i<list.length; i++){
+                list[i] = cursor.getInt(i);
+            }
+        }
+        cursor.close();
+        return list;
+    }
+
+    public int[] findLiveWork(int code){
+        int[] list = new int[2];
+        String selection = Constant.DATA_CODE + " LIKE ?";
+        String[] selectionArgs = {Integer.toString(code)};
+        String[] columns = {Constant.DATA_LIVE, Constant.DATA_WORK};
+
+        Cursor cursor  = database.query(Constant.TABLE_NAME[3], columns, selection, selectionArgs, null,null, null);
+        if(cursor.getCount() > 0) {
+            cursor.moveToNext();
+            list[0] = cursor.getInt(0);
+            list[1] = cursor.getInt(1);
+        }
+        cursor.close();
+        return list;
+    }
+
 }

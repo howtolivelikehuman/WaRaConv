@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Rank.InforDetailFragment4">
+
+    <TextView
+        android:id="@+id/textViewWorkLive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="인구(주거인구/직장인구)"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/textViewWorkLiveDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        />
+
+    <org.eazegraph.lib.charts.PieChart
+        android:id="@+id/pieChartWorkLive"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:padding="8dp"
+        app:egLegendTextSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/textViewHouseHold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="가구 인원별 세대 수"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:textAlignment="center"
+        />
+
+    <org.eazegraph.lib.charts.BarChart
+        android:id="@+id/barChartHouseHold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        app:egBarWidth="40dp"
+        app:egFixedBarWidth="true"
+        app:egLegendColor="@android:color/black"
+        app:egLegendHeight="40dp" />
+
+</LinearLayout>

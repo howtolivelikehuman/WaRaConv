@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.tabs.TabLayout;
+import com.swapp.waraconvapp.DB.DataBase;
+import com.swapp.waraconvapp.DB.DatabaseHelper;
 import com.swapp.waraconvapp.DB.DetailInfo;
 import com.swapp.waraconvapp.Input.ViewPagerAdapter;
 import com.swapp.waraconvapp.R;
@@ -28,6 +30,16 @@ public class InfoDetailActivity extends AppCompatActivity {
     InforDetailFragment1 inforDetailFragment1;
     InforDetailFragment2 inforDetailFragment2;
     InforDetailFragment3 inforDetailFragment3;
+    InforDetailFragment4 inforDetailFragment4;
+
+
+    int code;
+
+    //0 = male, 1 = female
+    int[] gender;
+    int[] generation;
+    int[] live_work;
+    int[] house;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +48,21 @@ public class InfoDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         detailInfo = intent.getParcelableExtra("detailinfo");
+        code = detailInfo.getCode();
 
         Log.d("세부정보", detailInfo.getName() + " " + detailInfo.getCode());
         Log.d("세부정보", detailInfo.getParentName() + " " + detailInfo.getRanknum());
         Log.d("세부정보",detailInfo.getTotalscore() + " " + detailInfo.getProfitscore() + " " + detailInfo.getStablescore());
+
+
+        //데이터 받아오기
+        DataBase db = new DataBase(new DatabaseHelper(getApplicationContext()));
+
+        gender = db.findGender(code);
+        generation = db.findGeneration(code);
+        house = db.findHouse(code);
+        live_work = db.findLiveWork(code);
+
 
         //툴바 설정
         tvToolbar = findViewById(R.id.textName);
@@ -51,20 +74,42 @@ public class InfoDetailActivity extends AppCompatActivity {
 
         //탭 레이아웃 + 뷰페이저
         tabsInforDetail=findViewById(R.id.tabsInforDetail);
-        tabsInforDetail.addTab((tabsInforDetail.newTab().setText("지역 정보")));
-        tabsInforDetail.addTab((tabsInforDetail.newTab().setText("인구(성별/연령별)")));
-        tabsInforDetail.addTab((tabsInforDetail.newTab().setText("인구(그 외)")));
+        tabsInforDetail.addTab((tabsInforDetail.newTab().setText("기본 정보")));
+        tabsInforDetail.addTab((tabsInforDetail.newTab().setText("예측 데이터")));
+        tabsInforDetail.addTab((tabsInforDetail.newTab().setText("인구 I")));
+        tabsInforDetail.addTab((tabsInforDetail.newTab().setText("인구 II")));
 
         inforDetailFragment1=new InforDetailFragment1();
-        inforDetailFragment2=new InforDetailFragment2();
-        inforDetailFragment3=new InforDetailFragment3();
+        inforDetailFragment2 = new InforDetailFragment2();
+        inforDetailFragment3 =new InforDetailFragment3();
+        inforDetailFragment4 =new InforDetailFragment4();
 
         //프래그먼트 번들 전달
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("detailInfo",detailInfo);
-        inforDetailFragment1.setArguments(bundle);
-        inforDetailFragment2.setArguments(bundle);
-        inforDetailFragment3.setArguments(bundle);
+        Bundle bundle[] = new Bundle[4];
+        for(int i=0; i<bundle.length;i++){
+            bundle[i] = new Bundle();
+        }
+
+        //1
+        bundle[0].putParcelable("detailInfo", detailInfo);
+
+        //2
+        bundle[2].putInt("code", code);
+
+        //3
+        bundle[2].putInt("code", code);
+        bundle[2].putIntArray("gender",gender);
+        bundle[2].putIntArray("generation",generation);
+
+        //4
+        bundle[3].putInt("code", code);
+        bundle[3].putIntArray("house",house);
+        bundle[3].putIntArray("live_work",live_work);
+
+        inforDetailFragment1.setArguments(bundle[0]);
+        inforDetailFragment2.setArguments(bundle[1]);
+        inforDetailFragment3.setArguments(bundle[2]);
+        inforDetailFragment4.setArguments(bundle[3]);
 
         viewPager = findViewById(R.id.viewPager);
         viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager());
@@ -72,6 +117,7 @@ public class InfoDetailActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(inforDetailFragment1);
         viewPagerAdapter.addFragment(inforDetailFragment2);
         viewPagerAdapter.addFragment(inforDetailFragment3);
+        viewPagerAdapter.addFragment(inforDetailFragment4);
 
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabsInforDetail));

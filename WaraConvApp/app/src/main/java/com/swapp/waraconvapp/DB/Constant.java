@@ -6,7 +6,7 @@ public class Constant {
     public static final String PACKAGE_NAME = "com.swapp.waraconv.app";
 
     public static final String DATABASE_NAME = "WaraDB";
-    public static final String[] TABLE_NAME = {"DATA", "MAP", "RANK"};
+    public static final String[] TABLE_NAME = {"BasicData", "MAP", "RANK", "Population"};
     
     //for classify
     public static final String DATA_CODE = "code";
@@ -14,12 +14,16 @@ public class Constant {
     public static final String DATA_PARENT = "parent";
     public static final String DATA_PARENTNAME = "parentName";
 
-    //dataset
-    public static final String[] DATA_MALE = {"male2018", "male2019", "male2020"};
-    public static final String[] DATA_FEMALE = {"female2018", "female2019", "female2020"};
-    public static final String[] DATA_ONE_HOUSEHOLD = {"onehouse2018", "onehouse2019", "onehouse2020"};
-    public static final String[] DATA_CONV_NUM = {"convnum2018", "convnum2019", "convnum2020"};
+    //basicdata
+    public static final String DATA_CONVNUM = "convnum";
     public static final String[] DATA_RENT = {"rent2018", "rent2019", "rent2020"};
+
+    //popluation
+    public static final String[] DATA_GENDER = {"male", "female"};
+    public static final String[] DATA_GENERATGION = {"g10", "g20", "g30", "g40", "g50","g60"};
+    public static final String DATA_LIVE = "livingpop";
+    public static final String DATA_WORK = "workingpop";
+    public static final String[] DATA_HOUSE ={"house1", "house2", "house3", "house4", "house5"};
 
     //map
     public static final String MAP_CHILD = "childcode";
