@@ -99,8 +99,9 @@ public class DataBase {
         StringBuffer query = new StringBuffer();
 
         query.append(Constant.FIND_RANK1);
-        query.append(Constant.RANK_PROFITSCORE + "*" + p_ratio + "+");
-        query.append(Constant.RANK_STABLESCORE + "*" + s_ratio);
+        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_PROFITSCORE+",  ");
+        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_STABLESCORE+",  ");
+        query.append(Constant.RANK_PROFITSCORE + "*" + p_ratio + "+"+Constant.RANK_STABLESCORE + "*" + s_ratio);
         query.append(Constant.FIND_RANK2);
 
         //지역 범위
@@ -137,6 +138,7 @@ public class DataBase {
             d.setProfitscore(cursor.getFloat(4));
             d.setStablescore(cursor.getFloat(5));
             d.setTotalscore(cursor.getFloat(6));
+            d.setRatio(ratio);
             d.setRanknum(ranknum);
             list.add(d);
             if(ranknum > 29){

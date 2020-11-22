@@ -13,6 +13,16 @@ public class DetailInfo implements Parcelable {
     float profitscore;
     float stablescore;
     float totalscore;
+
+    public int getRatio() {
+        return ratio;
+    }
+
+    public void setRatio(int ratio) {
+        this.ratio = ratio;
+    }
+
+    int ratio;
     int parent;
 
     //data
@@ -32,9 +42,10 @@ public class DetailInfo implements Parcelable {
         parentName = in.readString();
         parent = in.readInt();
         ranknum = in.readInt();
+        ratio = in.readInt();
+        totalscore = in.readFloat();
         profitscore = in.readFloat();
         stablescore = in.readFloat();
-        totalscore = in.readFloat();
     }
 
     public int describeContents() {
@@ -45,10 +56,13 @@ public class DetailInfo implements Parcelable {
         in.writeInt(code);
         in.writeString(name);
         in.writeString(parentName);
+        in.writeInt(parent);
         in.writeInt(ranknum);
+        in.writeInt(ratio);
+        in.writeFloat(totalscore);
         in.writeFloat(profitscore);
         in.writeFloat(stablescore);
-        in.writeFloat(totalscore);
+
     }
 
     public static final Parcelable.Creator<DetailInfo> CREATOR = new Parcelable.Creator<DetailInfo>(){

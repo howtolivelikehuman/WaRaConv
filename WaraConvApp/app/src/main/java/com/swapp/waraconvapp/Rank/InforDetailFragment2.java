@@ -1,4 +1,4 @@
-package com.swapp.waraconvapp.Input;
+package com.swapp.waraconvapp.Rank;
 
 import android.os.Bundle;
 
@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import com.swapp.waraconvapp.R;
 
-public class InforDetailFragment1 extends Fragment {
+public class InforDetailFragment2 extends Fragment {
 
-    TextView Fragment1TextView;
-
-    public InforDetailFragment1() {
+    TextView Fragment2TextView;
+    
+    public InforDetailFragment2() {
         // Required empty public constructor
     }
 
@@ -26,15 +26,16 @@ public class InforDetailFragment1 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_infor_detail1, container, false);
 
-        Fragment1TextView=view.findViewById(R.id.Fragment1TextView);
+        View view = inflater.inflate(R.layout.fragment_infor_detail2, container, false);
+
+        Fragment2TextView=view.findViewById(R.id.Fragment2TextView);
 
         Bundle bundle = getArguments();
 
         String dongName = bundle.getString("dongName");
 
-        Fragment1TextView.setText(dongName);
+        Fragment2TextView.setText(dongName);
 
         return view;
     }

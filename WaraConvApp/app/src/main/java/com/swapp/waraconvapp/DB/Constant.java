@@ -48,9 +48,7 @@ public class Constant {
     public static final String FIND_RANK1 = "SELECT " + TABLE_NAME[2]+"."+RANK_CODE+ ", "
             + TABLE_NAME[0]+"."+DATA_NAME+ ", "
             + TABLE_NAME[0]+"."+DATA_PARENTNAME+", "
-            + TABLE_NAME[0]+"."+DATA_PARENT+", "
-            + TABLE_NAME[2]+"."+RANK_PROFITSCORE+ ", "
-            + TABLE_NAME[2]+"."+RANK_STABLESCORE + ", ";
+            + TABLE_NAME[0]+"."+DATA_PARENT+", ";
 
     public static final String FIND_RANK2 = " AS " + RANK_TOTALSCORE
             + " FROM " + TABLE_NAME[0] +", " + TABLE_NAME[2]

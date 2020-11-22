@@ -93,7 +93,7 @@ public class InputFragment3 extends Fragment {
         yRAxis.setDrawGridLines(false);
 
         Description description = new Description();
-        description.setText("단위 : 1평 당 임대료,원");
+        description.setText("1평 당 1층 평균 임대료, 원");
         lineChart.setDescription(description);
 
         lineChart.setDoubleTapToZoomEnabled(true);
@@ -131,9 +131,8 @@ public class InputFragment3 extends Fragment {
                         Toast.makeText(getContext(), "올바른 금액을 입력하세요", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
-                    Toast.makeText(getContext(), "최소 금액을 입력하세요", Toast.LENGTH_SHORT).show();
                 }
+                ((InputListener)activity).inputSet(input,4);
             }
         });
 

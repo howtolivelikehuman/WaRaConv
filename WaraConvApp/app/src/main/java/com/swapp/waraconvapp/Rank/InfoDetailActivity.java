@@ -12,9 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.tabs.TabLayout;
 import com.swapp.waraconvapp.DB.DetailInfo;
-import com.swapp.waraconvapp.Input.InforDetailFragment1;
-import com.swapp.waraconvapp.Input.InforDetailFragment2;
-import com.swapp.waraconvapp.Input.InforDetailFragment3;
 import com.swapp.waraconvapp.Input.ViewPagerAdapter;
 import com.swapp.waraconvapp.R;
 
@@ -41,7 +38,8 @@ public class InfoDetailActivity extends AppCompatActivity {
         detailInfo = intent.getParcelableExtra("detailinfo");
 
         Log.d("세부정보", detailInfo.getName() + " " + detailInfo.getCode());
-        Log.d("세부정보", detailInfo.getParentName());
+        Log.d("세부정보", detailInfo.getParentName() + " " + detailInfo.getRanknum());
+        Log.d("세부정보",detailInfo.getTotalscore() + " " + detailInfo.getProfitscore() + " " + detailInfo.getStablescore());
 
         //툴바 설정
         tvToolbar = findViewById(R.id.textName);
@@ -63,7 +61,7 @@ public class InfoDetailActivity extends AppCompatActivity {
 
         //프래그먼트 번들 전달
         Bundle bundle = new Bundle();
-        bundle.putString("dongName",detailInfo.getName());
+        bundle.putParcelable("detailInfo",detailInfo);
         inforDetailFragment1.setArguments(bundle);
         inforDetailFragment2.setArguments(bundle);
         inforDetailFragment3.setArguments(bundle);
@@ -90,7 +88,5 @@ public class InfoDetailActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
-
     }
 }
