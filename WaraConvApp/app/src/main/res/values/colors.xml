@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#BAE0BD</color>
+    <color name="colorTap">#BAE0BD</color>
+    <color name="colorTapDark">#5E9C76</color>
+    <color name="colorPrimaryDark">#5E9C76</color>
+    <color name="colorAccent">#F78F8F</color>
     <color name="appColor">#F15B6C</color>
     <color name="appColorBackground">#FAEFDE</color>
 </resources>

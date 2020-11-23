@@ -221,4 +221,38 @@ public class DataBase {
         return list;
     }
 
+    //편의점수
+    public int findConv(int code){
+        int list = 0;
+        String selection = Constant.DATA_CODE + " LIKE ?";
+        String[] selectionArgs = {Integer.toString(code)};
+        String[] columns = {Constant.DATA_CONVNUM};
+
+        Cursor cursor  = database.query(Constant.TABLE_NAME[0], columns, selection, selectionArgs, null,null, null);
+        while(cursor.moveToNext()){
+            list = cursor.getInt(0);
+        }
+        cursor.close();
+        return list;
+    }
+
+    //3년치 임대시세 (서울, 지역구, 동)받아오기
+    public int[][] findRent3(int code, int parentcode, int[] conv){
+        int[][] list = new int[3][3];
+        String query = Constant.FIND_RENT;
+        query = query + parentcode;
+        query = query + Constant.FIND_RENT2 + code + " ORDER BY "+ Constant.DATA_CODE + " ASC";
+
+        Cursor cursor = database.rawQuery(query.toString(),null);
+        int index = 0;
+        while (cursor.moveToNext()){
+            Log.d("tq",list[index][0] + " " +list[index][1] + " "+list[index][2]);
+            list[index][0] = cursor.getInt(0);
+            list[index][1] = cursor.getInt(1);
+            list[index][2] = cursor.getInt(2);
+            conv[index] = cursor.getInt(3);
+            index++;
+        }
+        return list;
+    }
 }

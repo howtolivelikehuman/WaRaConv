@@ -34,6 +34,8 @@ public class InfoDetailActivity extends AppCompatActivity {
 
 
     int code;
+    int[][] rent;
+    int[] convnum=new int[3];
 
     //0 = male, 1 = female
     int[] gender;
@@ -62,11 +64,12 @@ public class InfoDetailActivity extends AppCompatActivity {
         generation = db.findGeneration(code);
         house = db.findHouse(code);
         live_work = db.findLiveWork(code);
+        rent = db.findRent3(code, detailInfo.getParent(), convnum);
 
 
         //툴바 설정
         tvToolbar = findViewById(R.id.textName);
-        tvToolbar.setText(detailInfo.getName());
+        tvToolbar.setText("세부 정보");
         toolbarInforDetail=findViewById(R.id.toolbarInforDetail);
         setSupportActionBar(toolbarInforDetail);
         ActionBar actionBar = getSupportActionBar();
@@ -92,6 +95,10 @@ public class InfoDetailActivity extends AppCompatActivity {
 
         //1
         bundle[0].putParcelable("detailInfo", detailInfo);
+        bundle[0].putIntArray("rent0", rent[0]);
+        bundle[0].putIntArray("rent1", rent[1]);
+        bundle[0].putIntArray("rent2", rent[2]);
+        bundle[0].putIntArray("convnum",convnum);
 
         //2
         bundle[2].putInt("code", code);

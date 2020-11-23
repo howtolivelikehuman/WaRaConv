@@ -69,4 +69,8 @@ public class Constant {
     public static final String FIND_RANK3 = " ) AND " + TABLE_NAME[2]+"."+RANK_CODE
             + " = " + TABLE_NAME[0]+"."+DATA_CODE
             + " ORDER BY " + RANK_TOTALSCORE + " DESC";
+
+    public static final String FIND_RENT = "SELECT " + DATA_RENT[0] +", " + DATA_RENT[1] +", "+ DATA_RENT[2]+ ", " + DATA_CONVNUM
+            + " FROM "+ TABLE_NAME[0] + " WHERE CODE = 11 OR CODE = ";
+    public static final String FIND_RENT2 = " OR CODE = ";
 }

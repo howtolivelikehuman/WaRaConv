@@ -66,9 +66,7 @@ public class InputFragment3 extends Fragment {
         lineDataSet.setLineWidth(2);
         lineDataSet.setCircleRadius(5);
         lineDataSet.setCircleColor(Color.parseColor("#BAE0BD"));
-        lineDataSet.setCircleColorHole(Color.parseColor("#5E9F76"));
         lineDataSet.setColor(Color.parseColor("#BAE0BD"));
-        lineDataSet.setDrawCircleHole(true);
         lineDataSet.setDrawCircles(true);
         lineDataSet.setDrawHorizontalHighlightIndicator(false);
         lineDataSet.setDrawHighlightIndicators(false);
@@ -94,7 +92,7 @@ public class InputFragment3 extends Fragment {
         description.setText("1평 당 1층 평균 임대료, 원");
         lineChart.setDescription(description);
 
-        lineChart.setDoubleTapToZoomEnabled(true);
+        lineChart.setDoubleTapToZoomEnabled(false);
         lineChart.setDrawGridBackground(false);
         lineChart.animateY(1500, Easing.EasingOption.EaseInCubic);
         lineChart.invalidate();
@@ -108,8 +106,6 @@ public class InputFragment3 extends Fragment {
         editTextmin = (EditText) view.findViewById(R.id.editTextmin);
 
         input = getArguments().getParcelable("input");
-        Log.d("도시들", Integer.toString(input.getArea().size()));
-        Log.d("비율", Integer.toString(input.getRatio()));
 
         ImageButton nextBtn = view.findViewById(R.id.nextButton);
         nextBtn.setOnClickListener(new View.OnClickListener() {

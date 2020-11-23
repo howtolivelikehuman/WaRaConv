@@ -29,7 +29,6 @@
             android:layout_weight="2"
             android:gravity="center"
             android:text="행정동"
-            android:textColor="@android:color/black"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -45,7 +44,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="right|center_vertical"
-                android:textColor="@android:color/black"
                 android:text="어디구" />
 
             <TextView
@@ -55,7 +53,6 @@
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="총 : 점"
-                android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
         </LinearLayout>

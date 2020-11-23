@@ -56,13 +56,13 @@ public class InforDetailFragment3 extends Fragment {
         barChartAge=view.findViewById(R.id.barChartAge);
 
         pieChartSex.clearChart();
-        pieChartSex.addPieSlice(new PieModel("남성",gender[0], Color.parseColor("#CDA67F")));
-        pieChartSex.addPieSlice(new PieModel("여성",gender[1],Color.parseColor("#00BFFF")));
+        pieChartSex.addPieSlice(new PieModel("남성",gender[0], Color.parseColor("#7BBEEB")));
+        pieChartSex.addPieSlice(new PieModel("여성",gender[1],Color.parseColor("#F49DB8")));
         pieChartSex.startAnimation();
 
         barChartAge.clearChart();
         for(int i=0; i<generation.length;i++){
-            barChartAge.addBar(new BarModel((i+1)+"0대",generation[i],Color.parseColor("#00BFFF")));
+            barChartAge.addBar(new BarModel((i+1)+"0대",generation[i],Color.parseColor("#72CAAF")));
         }
         barChartAge.startAnimation();
 

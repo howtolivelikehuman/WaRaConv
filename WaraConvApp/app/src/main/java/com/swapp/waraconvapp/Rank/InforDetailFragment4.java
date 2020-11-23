@@ -25,6 +25,9 @@ public class InforDetailFragment4 extends Fragment {
     BarChart barChartHouseHold;
 
     TextView textViewWorkLiveDetail;
+    int code;
+    int[] live_work;
+    int[] house;
 
     public InforDetailFragment4() {
         // Required empty public constructor
@@ -39,28 +42,28 @@ public class InforDetailFragment4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         Bundle bundle = getArguments();
-        detailInfo = bundle.getParcelable("detailInfo");
+        code = bundle.getInt("code");
+        code = bundle.getInt("code");
+        live_work = bundle.getIntArray("live_work");
+        house = bundle.getIntArray("house");
 
         View view = inflater.inflate(R.layout.fragment_infor_detail4, container, false);
 
         textViewWorkLiveDetail=view.findViewById(R.id.textViewWorkLiveDetail);
-        textViewWorkLiveDetail.setText("주거인구: 13459명\n직장인구: 11210명");
+        textViewWorkLiveDetail.setText("주거인구:" + live_work[0]+ "명  직장인구:" + live_work[1]+"명");
 
         pieChartWorkLive=view.findViewById(R.id.pieChartWorkLive);
         barChartHouseHold=view.findViewById(R.id.barChartHouseHold);
 
         pieChartWorkLive.clearChart();
-        pieChartWorkLive.addPieSlice(new PieModel("주거인구",13459, Color.parseColor("#CDA67F")));
-        pieChartWorkLive.addPieSlice(new PieModel("직장인구",11210,Color.parseColor("#00BFFF")));
+        pieChartWorkLive.addPieSlice(new PieModel("주거인구",live_work[0], Color.parseColor("#72CAAF")));
+        pieChartWorkLive.addPieSlice(new PieModel("직장인구",live_work[1],Color.parseColor("#F49DB8")));
         pieChartWorkLive.startAnimation();
 
         barChartHouseHold.clearChart();
-        barChartHouseHold.addBar(new BarModel("1인세대",2043,Color.parseColor("#00BFFF")));
-        barChartHouseHold.addBar(new BarModel("2인세대",1135,Color.parseColor("#00BFFF")));
-        barChartHouseHold.addBar(new BarModel("3인세대",991,Color.parseColor("#00BFFF")));
-        barChartHouseHold.addBar(new BarModel("4인세대",915,Color.parseColor("#00BFFF")));
-        barChartHouseHold.addBar(new BarModel("5인세대",234,Color.parseColor("#00BFFF")));
-
+        for(int i=0; i<house.length; i++){
+            barChartHouseHold.addBar(new BarModel((i+1)+"인세대",house[i],Color.parseColor("#7BBEEB")));
+        }
         barChartHouseHold.startAnimation();
 
         return view;
