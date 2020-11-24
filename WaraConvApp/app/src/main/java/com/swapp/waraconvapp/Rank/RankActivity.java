@@ -1,9 +1,12 @@
 package com.swapp.waraconvapp.Rank;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,6 +14,7 @@ import com.swapp.waraconvapp.DB.DataBase;
 import com.swapp.waraconvapp.DB.DatabaseHelper;
 import com.swapp.waraconvapp.DB.DetailInfo;
 import com.swapp.waraconvapp.Input.Input;
+import com.swapp.waraconvapp.Input.SearchActivity;
 import com.swapp.waraconvapp.R;
 
 import java.util.ArrayList;
@@ -46,15 +50,30 @@ public class RankActivity extends AppCompatActivity {
         //랭크 가져오기
         rankItems = db.findRank(rentalmax, rentalmin, areacode, ratio);
 
-        recyclerViewRank=findViewById(R.id.recyclerviewRank);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
-        recyclerViewRank.setLayoutManager(layoutManager);
-        adapter=new RankAdapter();
+        //1개도 없음
+        if(rankItems == null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("결과");
+            builder.setMessage("조건에 맞는 지역을 발견하지 못하였습니다.\n다시 시도해 주십시오");
+            builder.setNeutralButton("다시하기", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
-        adapter.setItems(rankItems);
+            });
+            builder.show();
+        }else{
+            recyclerViewRank=findViewById(R.id.recyclerviewRank);
+            LinearLayoutManager layoutManager=new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
+            recyclerViewRank.setLayoutManager(layoutManager);
+            adapter=new RankAdapter();
 
-        recyclerViewRank.setAdapter(adapter);
+            adapter.setItems(rankItems);
 
-
+            recyclerViewRank.setAdapter(adapter);
+        }
     }
 }

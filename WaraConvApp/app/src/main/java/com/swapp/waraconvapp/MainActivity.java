@@ -62,11 +62,18 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean isCheckDB(Context context){
         String filepath = "/data/data/" + context.getPackageName() + "/databases/" + Constant.DATABASE_NAME;
-        Log.d("아니시발", filepath);
         File file = new File(filepath);
 
         if(file.exists()){
-            return true;
+            long filesize = file.length();
+            //다른 DB 파일
+            if(filesize != Constant.dbfile_size){
+                file.delete();
+                return false;
+            }
+            else{
+                return true;
+            }
         }
         return false;
     }

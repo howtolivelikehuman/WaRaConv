@@ -104,9 +104,10 @@
                 android:id="@+id/editTextmax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="6"
+                android:maxLength="6"
                 android:gravity="right"
                 android:hint="999999"
+                android:ems="4"
                 android:inputType="number" />
 
         </LinearLayout>
@@ -127,7 +128,8 @@
                 android:id="@+id/editTextmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="6"
+                android:maxLength="6"
+                android:ems="4"
                 android:gravity="right"
                 android:hint="0"
                 android:inputType="number" />

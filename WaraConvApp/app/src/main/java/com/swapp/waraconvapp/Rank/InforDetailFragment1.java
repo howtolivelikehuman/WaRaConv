@@ -102,9 +102,9 @@ public class InforDetailFragment1 extends Fragment {
         TextViewName.setText(detailInfo.getName());
         TextViewParentName.setText(detailInfo.getParentName());
         TextViewRank.setText(Integer.toString(detailInfo.getRanknum()) + "순위");
-        TextViewTotalScore.setText(Float.toString(detailInfo.getTotalscore())+ "점");
-        TextViewProfitScore.setText(Float.toString(detailInfo.getProfitscore())+ "점");
-        TextViewStableScore.setText(Float.toString(detailInfo.getStablescore())+ "점");
+        TextViewTotalScore.setText(String.format("%.2f", detailInfo.getTotalscore())+"점");
+        TextViewProfitScore.setText(String.format("%.2f", detailInfo.getProfitscore())+"점");
+        TextViewStableScore.setText(String.format("%.2f", detailInfo.getStablescore())+"점");
         TextViewRatio.setText("(설정 가중치 비율 = "+detailInfo.getRatio()+ " : " +(100-detailInfo.getRatio())+")");
 
         TextViewConv.setText(detailInfo.getName());
@@ -117,7 +117,7 @@ public class InforDetailFragment1 extends Fragment {
         lineChart = (LineChart) view.findViewById(R.id.rentalChart);
         setGraph(lineChart);
 
-        RentalMarkerView_rent markerView = new RentalMarkerView_rent(activity.getApplicationContext(), R.layout.markerview);
+        RentalMarkerView_ps markerView = new RentalMarkerView_ps(activity.getApplicationContext(), R.layout.markerview,0);
         markerView.setChartView(lineChart);
         lineChart.setMarker(markerView);
 
@@ -202,7 +202,7 @@ public class InforDetailFragment1 extends Fragment {
 
         lineChart.setDoubleTapToZoomEnabled(false);
         lineChart.setDrawGridBackground(false);
-        lineChart.animateY(1500, Easing.EasingOption.EaseInExpo);
+        lineChart.animateY(2000, Easing.EasingOption.EaseInQuad);
         lineChart.invalidate();
 
     }

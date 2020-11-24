@@ -36,6 +36,9 @@ public class InfoDetailActivity extends AppCompatActivity {
     int code;
     int[][] rent;
     int[] convnum=new int[3];
+    float[][] survive = new float[3][3];
+    int[][] profit = new int[3][3];
+
 
     //0 = male, 1 = female
     int[] gender;
@@ -65,6 +68,7 @@ public class InfoDetailActivity extends AppCompatActivity {
         house = db.findHouse(code);
         live_work = db.findLiveWork(code);
         rent = db.findRent3(code, detailInfo.getParent(), convnum);
+        db.findProfit_Survive(code,detailInfo.getParent(),profit,survive);
 
 
         //툴바 설정
@@ -101,7 +105,14 @@ public class InfoDetailActivity extends AppCompatActivity {
         bundle[0].putIntArray("convnum",convnum);
 
         //2
-        bundle[2].putInt("code", code);
+        bundle[1].putInt("code", code);
+        bundle[1].putParcelable("detailInfo", detailInfo);
+        bundle[1].putIntArray("profit0", profit[0]);
+        bundle[1].putIntArray("profit1", profit[1]);
+        bundle[1].putIntArray("profit2", profit[2]);
+        bundle[1].putFloatArray("survive0", survive[0]);
+        bundle[1].putFloatArray("survive1", survive[1]);
+        bundle[1].putFloatArray("survive2", survive[2]);
 
         //3
         bundle[2].putInt("code", code);

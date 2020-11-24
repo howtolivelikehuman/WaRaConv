@@ -12,7 +12,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
@@ -21,6 +21,7 @@
         android:layout_weight="1"
         android:gravity="left"
         android:text="임대 시세"
+        android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +61,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="right|center_vertical"
+                android:textColor="@android:color/black"
                 android:text="행정동"
                 android:textSize="26sp" />
 
@@ -84,10 +86,11 @@
 
             <TextView
                 android:id="@+id/textRank"
-                android:layout_width="60dp"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:gravity="center|center_vertical"
-                android:text="1순위"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="3dp"
+                android:text="55순위"
                 android:textSize="24sp" />
 
             <TextView
@@ -169,6 +172,7 @@
             android:layout_weight="1"
             android:gravity="left"
             android:text="편의점 수"
+            android:textColor="@android:color/black"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -263,7 +267,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="1.0">
-
     </com.github.mikephil.charting.charts.LineChart>
 
     <TextView
@@ -272,7 +275,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:padding="2dp"
-        android:text="출처 : 우리마을가게 상권분석서비스"
+        android:text="출처 : 우리마을가게 상권분석서비스 (지역분석)"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="parent"

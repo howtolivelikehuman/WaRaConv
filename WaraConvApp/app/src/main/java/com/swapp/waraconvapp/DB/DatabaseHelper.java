@@ -14,11 +14,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        println("onCreate 호출됨");
+
     }
 
     public void onOpen(SQLiteDatabase db){
-        println("onOpen 호출됨");
     }
 
     @Override

@@ -93,8 +93,8 @@ public class DataBase {
     public ArrayList<DetailInfo> findRank(int rentalmax, int rentalmin, ArrayList<Integer> areacode, int ratio){
         ArrayList<DetailInfo> list = new ArrayList<DetailInfo>();
         DetailInfo d;
-        float p_ratio = (float)ratio/100;
-        float s_ratio = (float)(100-ratio)/100;
+        float p_ratio = ratio;
+        float s_ratio = (100-ratio);
 
         StringBuffer query = new StringBuffer();
 
@@ -124,7 +124,7 @@ public class DataBase {
         query.append(rentalmax);
 
         query.append(Constant.FIND_RANK3);
-
+        Log.d("조건", query.toString());
         Cursor cursor = database.rawQuery(query.toString(),null);
         Log.d("first", query.toString());
 
@@ -149,7 +149,7 @@ public class DataBase {
             }
         }
         cursor.close();
-        return list;
+        return list.size() > 0 ? list : null;
     }
 
 
@@ -246,13 +246,32 @@ public class DataBase {
         Cursor cursor = database.rawQuery(query.toString(),null);
         int index = 0;
         while (cursor.moveToNext()){
-            Log.d("tq",list[index][0] + " " +list[index][1] + " "+list[index][2]);
             list[index][0] = cursor.getInt(0);
             list[index][1] = cursor.getInt(1);
             list[index][2] = cursor.getInt(2);
             conv[index] = cursor.getInt(3);
             index++;
         }
+        cursor.close();
         return list;
+    }
+
+    public void findProfit_Survive(int code, int parentcode, int[][] profit, float[][] survive){
+        String query = Constant.FIND_PROFIT;
+        query = query + parentcode;
+        query = query + Constant.FIND_PROFIT2 + code + " ORDER BY "+ Constant.DATA_CODE + " ASC";
+
+        Cursor cursor = database.rawQuery(query.toString(),null);
+        int index = 0;
+        while (cursor.moveToNext()){
+            profit[index][0] = cursor.getInt(3);
+            profit[index][1] = cursor.getInt(4);
+            profit[index][2] = cursor.getInt(5);
+            survive[index][0] = cursor.getFloat(6);
+            survive[index][1] = cursor.getFloat(7);
+            survive[index][2] = cursor.getFloat(8);
+            index++;
+        }
+        cursor.close();
     }
 }

@@ -13,26 +13,42 @@ import com.swapp.waraconvapp.R;
 
 import java.util.ArrayList;
 
-public class RentalMarkerView_rent extends MarkerView {
+public class RentalMarkerView_ps extends MarkerView {
     private TextView tvContent;
+    int ver;
 
-    public RentalMarkerView_rent(Context context, int layoutResource) {
+    public RentalMarkerView_ps(Context context, int layoutResource, int ver) {
         super(context, layoutResource);
         tvContent = (TextView)findViewById(R.id.tvContent);
+        this.ver = ver;
     }
 
     // callbacks everytime the MarkerView is redrawn, can be used to update the
     // content (user-interface)
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-        String text, gu;
+        String text;
         if (e instanceof CandleEntry) {
             CandleEntry ce = (CandleEntry) e;
-            text = Utils.formatNumber(ce.getHigh(), 0, false);
-            tvContent.setText(text+"원");
+            if(ver == 0){
+                text = Utils.formatNumber(ce.getHigh(), 0, true);
+                tvContent.setText(text+"원");
+            }
+            else{
+                text = Utils.formatNumber(ce.getHigh(), 1, false);
+                tvContent.setText(text+"%");
+            }
+
+
         } else {
-            text = Utils.formatNumber(e.getY(), 0, false);
-            tvContent.setText(text+"원");
+            if(ver == 0){
+                text = Utils.formatNumber(e.getY(), 0, true);
+                tvContent.setText(text+"원");
+            }
+            else{
+                text = Utils.formatNumber(e.getY(), 1, false);
+                tvContent.setText(text+"%");
+            }
         }
         super.refreshContent(e, highlight);
     }

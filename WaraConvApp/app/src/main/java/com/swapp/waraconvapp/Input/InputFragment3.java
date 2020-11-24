@@ -89,7 +89,7 @@ public class InputFragment3 extends Fragment {
         yRAxis.setDrawGridLines(false);
 
         Description description = new Description();
-        description.setText("1평 당 1층 평균 임대료, 원");
+        description.setText("1평 당 1층 월평균 임대료, 원 (2020)");
         lineChart.setDescription(description);
 
         lineChart.setDoubleTapToZoomEnabled(false);
@@ -115,18 +115,18 @@ public class InputFragment3 extends Fragment {
                 if(editTextmax.getText().toString().length() > 1){
                     rentalmax = Integer.parseInt(editTextmax.getText().toString());
                 }
+
                 if(editTextmin.getText().toString().length() > 1){
                     rentalmin = Integer.parseInt(editTextmin.getText().toString());
-                    if(rentalmax>rentalmin){
-                        input.setRentalmin(rentalmin);
-                        input.setRentalmax(rentalmax);
-                        ((InputListener)activity).inputSet(input,4);
-                    }else{
-                        Toast.makeText(getContext(), "올바른 금액을 입력하세요", Toast.LENGTH_SHORT).show();
-                    }
-
                 }
-                ((InputListener)activity).inputSet(input,4);
+
+                if(rentalmax>rentalmin){
+                    input.setRentalmin(rentalmin);
+                    input.setRentalmax(rentalmax);
+                    ((InputListener)activity).inputSet(input,4);
+                }else{
+                    Toast.makeText(getContext(), "올바른 금액을 입력하세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
