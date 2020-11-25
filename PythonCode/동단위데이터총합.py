@@ -1,6 +1,6 @@
 import pandas as pd
 
-for i in range(2018,2021):
+for i in range(2018,2021):#2018, 2019, 2020 연도별
     #기본 지역코드
     input1='../ProcessedDataSet/'+str(i)+' 서울특별시 지역코드.csv'
     #성별 통계
@@ -20,7 +20,7 @@ for i in range(2018,2021):
     #임대시세 통계
     input9='../ProcessedDataSet/동단위 세부 데이터/임대시세 통계/'+str(i)+'년 2분기 임대시세 통계.csv'
 
-
+    #csv 파일 read
     df1=pd.read_csv(input1, encoding="cp949",engine='python')
     df2=pd.read_csv(input2, encoding="cp949",engine='python')
     df3=pd.read_csv(input3, encoding="cp949",engine='python')
@@ -31,6 +31,7 @@ for i in range(2018,2021):
     df8=pd.read_csv(input8, encoding="cp949",engine='python')
     df9=pd.read_csv(input9, encoding="cp949",engine='python')
 
+    #병합
     dftotal=pd.merge(df1,df2,on='CD',how='outer')
     dftotal=pd.merge(dftotal,df3,on=['자치구','행정동'],how='outer')
     dftotal=pd.merge(dftotal,df4,on=['자치구','행정동'],how='outer')
@@ -42,4 +43,5 @@ for i in range(2018,2021):
 
     output="../ProcessedDataSet/동단위 분기총합데이터/"+str(i)+"년 2분기 동단위 총합.csv"
 
+    #출력
     dftotal.to_csv(output, encoding='cp949',index=False)
