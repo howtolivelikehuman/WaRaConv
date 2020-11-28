@@ -36,8 +36,8 @@ public class InfoDetailActivity extends AppCompatActivity {
     int code;
     int[][] rent;
     int[] convnum=new int[3];
-    float[][] survive = new float[3][3];
-    int[][] profit = new int[3][3];
+    float[][] survive = new float[3][4];
+    int[][] profit = new int[3][4];
 
 
     //0 = male, 1 = female

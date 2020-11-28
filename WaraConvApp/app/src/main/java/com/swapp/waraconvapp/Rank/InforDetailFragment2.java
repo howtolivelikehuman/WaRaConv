@@ -54,6 +54,7 @@ public class InforDetailFragment2 extends Fragment {
         profit[0] = bundle.getIntArray("profit0");
         profit[1] = bundle.getIntArray("profit1");
         profit[2] = bundle.getIntArray("profit2");
+
         survive[0] = bundle.getFloatArray("survive0");
         survive[1] = bundle.getFloatArray("survive1");
         survive[2] = bundle.getFloatArray("survive2");
@@ -81,36 +82,43 @@ public class InforDetailFragment2 extends Fragment {
     public void setGraph(LineChart lineChart, int[][] list, String des){
         String[] colors = {"#7BBEEB","#72CAAF","#F49DB8"};
 
-        LineDataSet[] lineDataSets = new LineDataSet[3];
-
-        List<Entry>[] entry = new List[3];
+        LineDataSet[] lineDataSets = new LineDataSet[4];
+        List<Entry>[] entry = new List[4];
         for(int i=0; i<3; i++){
             entry[i] = new ArrayList<>();
             for(int j=0; j<3; j++){
                 entry[i].add(new Entry(j,list[i][j]));
             }
         }
+
+        //expected2020
+        entry[3] = new ArrayList<>();
+        entry[3].add(new Entry(2,list[2][3]));
         setGraph(lineDataSets, lineChart, des, entry);
     }
     public void setGraph(LineChart lineChart, float[][] list, String des){
-        List<Entry>[] entry = new List[3];
-        LineDataSet[] lineDataSets = new LineDataSet[3];
+        List<Entry>[] entry = new List[4];
+        LineDataSet[] lineDataSets = new LineDataSet[4];
         for(int i=0; i<3; i++){
             entry[i] = new ArrayList<>();
             for(int j=0; j<3; j++){
                 entry[i].add(new Entry(j,list[i][j]));
             }
         }
+        //expected2020
+        entry[3] = new ArrayList<>();
+        entry[3].add(new Entry(2,list[2][3]));
         setGraph(lineDataSets, lineChart, des, entry);
     }
     public void setGraph(LineDataSet[] lineDataSets, LineChart lineChart, String des, List<Entry>[] entry){
-        String[] colors = {"#7BBEEB","#72CAAF","#F49DB8"};
+        String[] colors = {"#7BBEEB","#72CAAF","#F49DB8","#F8B990"};
 
         lineDataSets[0] = new LineDataSet(entry[0], "서울특별시");
         lineDataSets[1] = new LineDataSet(entry[1], detailInfo.getParentName());
         lineDataSets[2] = new LineDataSet(entry[2], detailInfo.getName());
+        lineDataSets[3] = new LineDataSet(entry[3], detailInfo.getName()+" [예측]");
 
-        for(int i=0; i<3; i++){
+        for(int i=0; i<4; i++){
             lineDataSets[i].setLineWidth(2);
             lineDataSets[i].setCircleRadius(5);
             lineDataSets[i].setCircleColor(Color.parseColor(colors[i]));
@@ -127,7 +135,7 @@ public class InforDetailFragment2 extends Fragment {
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setLabelCount(3,true);
-        final String xVal[]={"2018년","2019년","2020년 [예측]"};
+        final String xVal[]={"2018년","2019년","2020년"};
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -154,6 +162,4 @@ public class InforDetailFragment2 extends Fragment {
         lineChart.animateY(2000, Easing.EasingOption.EaseInQuad);
         lineChart.invalidate();
     }
-
-
 }

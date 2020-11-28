@@ -3,8 +3,6 @@ package com.swapp.waraconvapp.DB;
 public class Constant {
     private Constant(){}
 
-    public static final long dbfile_size = 122880;
-
     public static final String DATABASE_NAME = "WaraDB";
     public static final String[] TABLE_NAME = {"BasicData", "MAP", "RANK", "Population"};
     
@@ -34,8 +32,8 @@ public class Constant {
     public static final String RANK_PROFITSCORE = "profitscore";
     public static final String RANK_STABLESCORE = "stablescore";
     public static final String RANK_TOTALSCORE = "totalscore";
-    public static final String[] RANK_PROFIT = {"profit2018", "profit2019", "expectedprofit2020"};
-    public static final String[] RANK_SURVIVE = {"survive2018", "survive2019", "expectedsurvive2020"};
+    public static final String[] RANK_PROFIT = {"profit2018", "profit2019", "profit2020", "expectedprofit2020"};
+    public static final String[] RANK_SURVIVE = {"survive2018", "survive2019", "survive2020","expectedsurvive2020"};
 
 
     /*SELECT rank.code, data2020.name, rank.profitscore, rank.stablescore, rank.profitscore*0.7+rank.stablescore*0.1 as totalscore

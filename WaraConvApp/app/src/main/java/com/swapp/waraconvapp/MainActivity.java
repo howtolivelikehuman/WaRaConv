@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,12 +63,20 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean isCheckDB(Context context){
         String filepath = "/data/data/" + context.getPackageName() + "/databases/" + Constant.DATABASE_NAME;
+        long dbfile_size = 0;
+        try{
+            AssetFileDescriptor i = getAssets().openFd(Constant.DATABASE_NAME);
+            dbfile_size = i.getLength();
+        } catch (IOException e) {
+            Log.e("ErrorMessage : ", e.getMessage());
+        }
+
         File file = new File(filepath);
 
         if(file.exists()){
             long filesize = file.length();
             //다른 DB 파일
-            if(filesize != Constant.dbfile_size){
+            if(filesize != dbfile_size){
                 file.delete();
                 return false;
             }

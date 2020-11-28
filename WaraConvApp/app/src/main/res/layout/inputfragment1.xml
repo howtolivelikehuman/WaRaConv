@@ -34,7 +34,7 @@
             android:layout_marginRight="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="20dp"
-            android:text="원하시는 지역구를 선택하실 수 있습니다.\n선택하신 지역구와 인접 행정동에 대해 검색합니다."
+            android:text="선택하신 지역구와 인접 행정동에 대해 검색합니다.\n미 선택시 전체 지역을 검색합니다."
             android:textSize="16sp" />
 
     </LinearLayout>

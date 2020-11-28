@@ -93,14 +93,14 @@ public class DataBase {
     public ArrayList<DetailInfo> findRank(int rentalmax, int rentalmin, ArrayList<Integer> areacode, int ratio){
         ArrayList<DetailInfo> list = new ArrayList<DetailInfo>();
         DetailInfo d;
-        float p_ratio = ratio;
-        float s_ratio = (100-ratio);
+        float p_ratio = (float)ratio/10;
+        float s_ratio = (float)(100-ratio)/10;
 
         StringBuffer query = new StringBuffer();
 
         query.append(Constant.FIND_RANK1);
-        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_PROFITSCORE+",  ");
-        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_STABLESCORE+",  ");
+        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_PROFITSCORE+ "*" + "10 ,  ");
+        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_STABLESCORE+ "*" + "10 ,  ");
         query.append(Constant.RANK_PROFITSCORE + "*" + p_ratio + "+"+Constant.RANK_STABLESCORE + "*" + s_ratio);
         query.append(Constant.FIND_RANK2);
 
@@ -267,9 +267,11 @@ public class DataBase {
             profit[index][0] = cursor.getInt(3);
             profit[index][1] = cursor.getInt(4);
             profit[index][2] = cursor.getInt(5);
-            survive[index][0] = cursor.getFloat(6);
-            survive[index][1] = cursor.getFloat(7);
-            survive[index][2] = cursor.getFloat(8);
+            profit[index][3] = cursor.getInt(6);
+            survive[index][0] = cursor.getFloat(7);
+            survive[index][1] = cursor.getFloat(8);
+            survive[index][2] = cursor.getFloat(9);
+            survive[index][3] = cursor.getFloat(10);
             index++;
         }
         cursor.close();
