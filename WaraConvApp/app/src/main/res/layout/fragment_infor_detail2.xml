@@ -92,10 +92,11 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:padding="2dp"
-        android:text="2020년 (2분기)는 모델을 통한 예측 데이터 입니다.\n(매출 평균 오차범위 : ±1600만)\n(생존률의 평균 오차범위 : ±3%)"
+        android:text="2020년 (2분기)는 모델을 통한 예측 데이터 입니다.\n(매출 평균 오차범위 : ±1200만)\n(생존률의 평균 오차범위 : ±3%)"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
         app:layout_constraintVertical_bias="1.0" />

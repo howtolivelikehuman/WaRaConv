@@ -93,14 +93,14 @@ public class DataBase {
     public ArrayList<DetailInfo> findRank(int rentalmax, int rentalmin, ArrayList<Integer> areacode, int ratio){
         ArrayList<DetailInfo> list = new ArrayList<DetailInfo>();
         DetailInfo d;
-        float p_ratio = (float)ratio/10;
-        float s_ratio = (float)(100-ratio)/10;
+        float p_ratio = (float)ratio/100;
+        float s_ratio = (float)(100-ratio)/100;
 
         StringBuffer query = new StringBuffer();
 
         query.append(Constant.FIND_RANK1);
-        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_PROFITSCORE+ "*" + "10 ,  ");
-        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_STABLESCORE+ "*" + "10 ,  ");
+        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_PROFITSCORE+ ",  ");
+        query.append(Constant.TABLE_NAME[2]+"."+Constant.RANK_STABLESCORE+ ",  ");
         query.append(Constant.RANK_PROFITSCORE + "*" + p_ratio + "+"+Constant.RANK_STABLESCORE + "*" + s_ratio);
         query.append(Constant.FIND_RANK2);
 
